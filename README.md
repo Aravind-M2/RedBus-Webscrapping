@@ -20,3 +20,4 @@ This project automates data scraping, cleaning, and analysis for bus routes, cos
 -----------------------------------------------------------------------------------------------------
 ## Project report
 "Redbus_mini_project_report.pdf" will have the overall project report
+- open it with edge if it does not open properly with adobe acrobat
