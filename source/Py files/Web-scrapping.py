@@ -155,7 +155,7 @@ for route in range(len(routelink_list)):
         
     if routenames_list[route] in route_bus_dict1.keys():
         alternate_name1 = routenames_list[route]+str(route)
-        route_bus_dict1[alternate_name] = bus_id1 
+        route_bus_dict1[alternate_name1] = bus_id1 
     else:
         route_bus_dict1[routenames_list[route]] = bus_id1 
     #==================== saving the details in dic =================#    
