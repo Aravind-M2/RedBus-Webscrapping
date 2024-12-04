@@ -56,7 +56,7 @@ for r,i in route_bus_detail_dict.items():
 
 import pandas as pd
 
-df_bus = pd.DataFrame(route_bus_prep)
+df_bus = pd.DataFrame(route_bus_prep) # list of dictionaries of bus details is conerted to dataframe
 
 
 df_bus_backup = df_bus.copy()
@@ -70,22 +70,23 @@ df_bus["Departing Time"] = pd.to_timedelta(df_bus["Departing Time"].str.extract(
 # df_bus["Duration"] = df_bus["Duration"].apply(lambda x: timedelta(hours=int(x.split("h")[0]), minutes=int(x.split("h")[1].split("m")[0])))
 def parse_duration(duration):
     try:
-        hours, minutes = map(int, duration.replace("h", "").replace("m", "").split())
-        return timedelta(hours=hours, minutes=minutes)
+        hours, minutes = map(int, duration.replace("h", "").replace("m", "").split()) # takes only the numbers as int and stores in hours and minutes
+        return timedelta(hours=hours, minutes=minutes) # returns the time by using the extracted values
     except Exception:
         # Handle invalid values
         return timedelta(0) 
 
-df_bus["Duration"] = df_bus["Duration"].apply(parse_duration)
+df_bus["Duration"] = df_bus["Duration"].apply(parse_duration) # changes the string to valid data type for time 
 
-df_bus["Reaching Date"] = df_bus["Travel Date"] + df_bus["Departing Time"] + df_bus["Duration"]
+df_bus["Reaching Date"] = df_bus["Travel Date"] + df_bus["Departing Time"] + df_bus["Duration"] # calculates reaching time with date
 
-df_bus["Starting Date"] = df_bus["Travel Date"] + df_bus["Departing Time"]
+df_bus["Starting Date"] = df_bus["Travel Date"] + df_bus["Departing Time"] # calculates starting date and time of the trip
 
 df_bus['Star Rating'] = df_bus['Star Rating'].fillna('0')
 df_bus['Star Rating'] = df_bus['Star Rating'].str.replace("New", '0')
 df_bus['Star Rating'] = df_bus['Star Rating'].astype(float)
-df_bus['Star Rating'] = df_bus['Star Rating'].apply(lambda x : '0' if x == None else x)
+df_bus['Star Rating'] = df_bus['Star Rating'].apply(lambda x : '0' if x is None else x)
+# df_bus['Star Rating'] = df_bus['Star Rating'].str.replace("New", '0')
 
 df_bus["Price"] = df_bus["Price"].str.replace("INR ", "").astype(float)
 
@@ -124,7 +125,7 @@ reaching_time TIME,
 star_rating FLOAT,
 price DECIMAL(10,2),
 seats_available INT
-)""")
+)""") ###
 
 #### data type --- DATETIME is not available in postgresql
 
@@ -146,7 +147,7 @@ df_bus_final.rename(columns={
 }, inplace=True)
 
 columns = ', '.join(df_bus_final.columns)
-table_name = 'bus_routes'
+table_name = 'bus_routes' ####
 insert_query = f"INSERT INTO {table_name} ({columns}) VALUES %s"
 
 # Convert DataFrame rows to a list of tuples
