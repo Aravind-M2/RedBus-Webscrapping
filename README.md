@@ -28,6 +28,6 @@ This project automates data scraping, cleaning, and analysis for bus routes, cos
 - Use the appropriate logical conditions for selected columns to filter without errors. error handlings on filters and more enhancements will be added in the future
 -----------------------------------------------------------------------------------------------------
 ## Project report
-"Redbus_mini_project_report.pdf" will have the overall project report
+"Redbus_mini_project_report.pdf" contains the overall report of this project
 - open it with edge if it does not open properly with adobe acrobat
 - click on this link for interactive slides **https://gamma.app/docs/Redbus-mini-project-report-k0sea0thgjd7hug**
